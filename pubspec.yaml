@@ -1,0 +1,37 @@
+name: weather_music_app
+description: "A new Flutter project."
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^0.13.3
+  audioplayers: ^6.1.0
+  cupertino_icons: ^1.0.8
+  path_provider: ^2.0.11
+  url_launcher: ^6.0.20
+  flutter_secure_storage: ^6.0.0
+  flutter_web_auth_2: ^3.0.0
+  flutter_bloc: ^8.1.6
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  flutter_launcher_icons: ^0.13.1 # Cập nhật phiên bản
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/music/
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/logo.png"
