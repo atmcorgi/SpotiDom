@@ -18,7 +18,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final weatherService = WeatherService();
-  late Future<Map<String, dynamic>> weatherData;
   Future<List<Map<String, dynamic>>>? _suggestedListFuture;
 
   late SpotifyService _spotifyService;
@@ -34,7 +33,6 @@ class _HomeScreenState extends State<HomeScreen> {
       redirectUri: 'http://localhost:8080/callback',
     );
     fetchToken();
-    weatherData = weatherService.fetchWeather('Hanoi');
   }
 
   void fetchToken() async {
@@ -62,18 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Container(
                 color: Colors.black,
                 padding: const EdgeInsets.all(16),
-                child: FutureBuilder<Map<String, dynamic>>(
-                  future: weatherData,
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const Center(child: CircularProgressIndicator());
-                    } else if (snapshot.hasError) {
-                      return Center(child: Text('Error: ${snapshot.error}'));
-                    } else {
-                      return WeatherWidget(weatherData: snapshot.data!);
-                    }
-                  },
-                ),
+                child: WeatherWidget(), // Remove FutureBuilder here
               ),
               Expanded(
                 child: Container(
