@@ -4,68 +4,76 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize => Size.fromHeight(kToolbarHeight);
 
-  String _getGreeting() {
-    final hour = DateTime.now().hour;
-    if (hour < 12) {
-      return 'Good Morning';
-    } else if (hour < 18) {
-      return 'Good Afternoon';
-    } else {
-      return 'Good Evening';
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Color.fromARGB(255, 12, 12, 12),
+      // Gradient background
+      flexibleSpace: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color(0xFF0D0D0D), Color(0xFF1A1A1A)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
+      ),
       title: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            _getGreeting(),
+            '🎉Hello',
             style: TextStyle(
-              fontSize: 26,
-              fontWeight: FontWeight.normal,
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
               color: Colors.white,
+              letterSpacing: 1.5,
               shadows: [
                 Shadow(
-                  blurRadius: 10.0,
-                  color: Colors.black.withOpacity(0.5),
-                  offset: Offset(0, 2),
+                  blurRadius: 8.0,
+                  color: Colors.black.withOpacity(0.4),
+                  offset: Offset(0, 3),
                 ),
               ],
             ),
           ),
-          SizedBox(width: 12),
-          CircleAvatar(
-            backgroundImage: NetworkImage(
-                'https://ss-images.saostar.vn/wp700/pc/1656232685263/saostar-ihih7uzwb5dmwrv0.jpg'),
-            radius: 20,
-            backgroundColor: Colors.transparent,
-            child: Align(
-              alignment: Alignment.bottomRight,
-              child: Container(
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    color: Colors.white,
-                    width: 2,
+          SizedBox(width: 8),
+          Stack(
+            children: [
+              // Avatar with a subtle glow effect
+              CircleAvatar(
+                backgroundImage: AssetImage('images/avt_d.jpg'),
+                radius: 16,
+                backgroundColor: Colors.transparent,
+              ),
+              Positioned(
+                bottom: 0,
+                right: 0,
+                child: Container(
+                  width: 12,
+                  height: 12,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.greenAccent,
+                    border: Border.all(
+                      color: Colors.black,
+                      width: 2,
+                    ),
                   ),
                 ),
               ),
-            ),
+            ],
           ),
         ],
       ),
       centerTitle: true,
-      elevation: 6,
+      elevation: 10,
       actions: [
         IconButton(
-          icon: Icon(Icons.notifications, color: Colors.white),
+          icon: Icon(Icons.notifications_outlined, color: Colors.white),
           onPressed: () {
             Navigator.pushNamed(context, '/notifications');
           },
+          tooltip: 'Notifications',
         ),
       ],
     );

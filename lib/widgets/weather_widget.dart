@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:weather_music_app/services/weather_service.dart';
+import 'package:weather_music_app/const.dart';
 
 class WeatherWidget extends StatefulWidget {
   @override
@@ -13,29 +14,42 @@ class _WeatherWidgetState extends State<WeatherWidget> {
   Map<String, dynamic>? weatherData;
   bool isLoading = true;
 
-  final List<String> cities = ['Hanoi', 'London', 'New York', 'Tokyo', 'Paris'];
-
-  // Bản đồ mô tả âm nhạc dựa trên điều kiện thời tiết
-  final Map<String, String> weatherDescriptions = {
-    'Clear': 'Nhạc: Vui tươi, năng lượng cao, dễ nhảy múa.',
-    'Few Clouds': 'Nhạc: Vui vẻ, nhưng có chút nhẹ nhàng.',
-    'Scattered Clouds':
-        'Nhạc: Bình yên, thư giãn, đôi khi mang hơi hướng tươi sáng.',
-    'Broken Clouds': 'Nhạc: Trầm lắng hơn, mang tính suy tư.',
-    'Shower Rain': 'Nhạc: Cảm xúc, đôi chút sôi động nhưng ẩn chứa sự buồn bã.',
-    'Rain': 'Nhạc: Chậm, u buồn, trầm mặc.',
-    'Thunderstorm': 'Nhạc: Mạnh mẽ, kịch tính, năng lượng cao.',
-    'Snow': 'Nhạc: Lãng mạn, ấm áp, nhẹ nhàng.',
-    'Mist': 'Nhạc: Bí ẩn, trầm lắng, dễ gây suy tư.',
-    'Smoke': 'Nhạc: Đen tối, ma mị, u ám.',
-    'Haze': 'Nhạc: Nhẹ nhàng, thoải mái, không quá căng thẳng.',
-    'Dust': 'Nhạc: Lạnh lùng, mạnh mẽ, đôi khi bí ẩn.',
-    'Fog': 'Nhạc: Dịu dàng, nhẹ nhàng, nhưng có cảm giác mơ hồ.',
-    'Sand': 'Nhạc: Sức mạnh, đầy năng lượng nhưng cũng mang chút bí ẩn.',
-    'Ash': 'Nhạc: U tối, cảm xúc mạnh, đôi khi gợi cảm giác thất vọng.',
-    'Squall': 'Nhạc: Năng lượng mạnh, kích thích cảm xúc mãnh liệt.',
-    'Tornado': 'Nhạc: Cường độ cao, nhịp điệu nhanh, cảm xúc mãnh liệt.',
-  };
+  String getBackgroundImage(String weatherCondition) {
+    switch (weatherCondition.toLowerCase()) {
+      case 'clear':
+        return 'images/clear.jpg';
+      case 'clouds':
+        return 'images/clouds.jpg';
+      case 'drizzle':
+        return 'images/drizzle.jpg';
+      case 'rain':
+        return 'images/rain.jpg';
+      case 'thunderstorm':
+        return 'images/thunderstorm.jpg';
+      case 'snow':
+        return 'images/snow.jpg';
+      case 'mist':
+        return 'images/mist.jpeg';
+      case 'smoke':
+        return 'images/smoke.jpg';
+      case 'haze':
+        return 'images/haze.jpeg';
+      case 'dust':
+        return 'images/dust.jpg';
+      case 'fog':
+        return 'images/fog.jpeg';
+      case 'sand':
+        return 'images/sand.jpeg';
+      case 'ash':
+        return 'images/ash.jpg';
+      case 'squall':
+        return 'images/squall.jpeg';
+      case 'tornado':
+        return 'images/tornado.jpg';
+      default:
+        return 'images/default_background.png'; // Hình nền mặc định
+    }
+  }
 
   @override
   void initState() {
@@ -94,13 +108,33 @@ class _WeatherWidgetState extends State<WeatherWidget> {
 
   @override
   Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        // Nội dung hiển thị của widget khi dữ liệu đã sẵn sàng
+        Opacity(
+          opacity: isLoading ? 0.5 : 1, // Tạo độ mờ khi đang tải dữ liệu
+          child: _buildWeatherContent(),
+        ),
+        // Nếu đang tải thì hiển thị spinner ở giữa
+        if (isLoading)
+          Center(
+            child: CircularProgressIndicator(),
+          ),
+      ],
+    );
+  }
+
+  Widget _buildWeatherContent() {
+    String currentWeatherCondition =
+        weatherData?['weather'][0]['main'] ?? 'default';
+    String backgroundImage = getBackgroundImage(currentWeatherCondition);
+
     return Container(
-      padding: const EdgeInsets.all(20.0), // Padding cho toàn bộ widget
+      padding: const EdgeInsets.all(20.0),
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage(
-              '/images/default-background.jpg'), // Đường dẫn đến ảnh trong assets
-          fit: BoxFit.cover, // Làm cho ảnh phủ kín Container
+          image: AssetImage(backgroundImage),
+          fit: BoxFit.cover,
         ),
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
@@ -118,10 +152,9 @@ class _WeatherWidgetState extends State<WeatherWidget> {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 12.0),
             decoration: BoxDecoration(
-              color: Colors.transparent, // Nền của dropdown
-              borderRadius: BorderRadius.circular(8), // Bo góc cho dropdown
-              border:
-                  Border.all(color: Colors.blueGrey), // Đường viền cho dropdown
+              color: Colors.transparent,
+              borderRadius: BorderRadius.circular(8),
+              border: Border.all(color: Colors.blueGrey),
             ),
             child: DropdownButton<String>(
               hint: Text(
@@ -146,44 +179,48 @@ class _WeatherWidgetState extends State<WeatherWidget> {
                   }
                 });
               },
-              isExpanded: true, // Mở rộng dropdown để chiếm toàn bộ chiều rộng
-              underline: SizedBox(), // Ẩn đường dưới của dropdown
+              isExpanded: true,
+              underline: SizedBox(),
               icon: Icon(
                 Icons.arrow_drop_down,
-                color: Colors.black54, // Màu sắc cho biểu tượng
+                color: Colors.black54,
               ),
-              dropdownColor: Colors.transparent, // Màu nền cho menu dropdown
-              style: TextStyle(color: Colors.black), // Màu chữ trong dropdown
+              dropdownColor: Colors.black.withOpacity(.7),
+              style: TextStyle(color: Colors.black),
             ),
           ),
 
           SizedBox(height: 20),
           // Hiển thị thông tin thời tiết
-          isLoading
-              ? CircularProgressIndicator()
-              : weatherData != null
-                  ? _buildWeatherInfo(weatherData!)
-                  : Text('Không có dữ liệu thời tiết'),
+          weatherData != null
+              ? _buildWeatherInfo(weatherData!)
+              : Text('Không có dữ liệu thời tiết'),
         ],
       ),
     );
   }
 
   Widget _buildWeatherInfo(Map<String, dynamic> data) {
-    final cityName = data['name'] + ', ' + data['sys']['country'];
-    final temperature = data['main']['temp'];
-    final weatherDescription = data['weather'][0]['description'];
-    final weatherIcon = data['weather'][0]['icon'];
-    final mainWeather = data['weather'][0]['main']; // Lấy tên thời tiết chính
+    final cityName = data['name'] != null
+        ? data['name'] + ', ' + (data['sys']['country'] ?? '')
+        : 'Unknown Location';
+    final temperature = data['main'] != null && data['main']['temp'] != null
+        ? data['main']['temp'].toString()
+        : 'N/A';
+    final weatherDescription =
+        data['weather'] != null && data['weather'].isNotEmpty
+            ? data['weather'][0]['description'] ?? 'No description'
+            : 'No description';
+    final weatherIcon = data['weather'] != null && data['weather'].isNotEmpty
+        ? data['weather'][0]['icon'] ?? ''
+        : '';
 
-    // Lấy mô tả âm nhạc từ bản đồ
-    final musicDescription = weatherDescriptions[mainWeather] ?? '';
-    print('MAIN: $mainWeather');
-    print('DESC: $musicDescription');
+    final musicDescription =
+        weatherDescriptions[weatherDescription]?['description'] ?? '';
     return Container(
       padding: const EdgeInsets.all(16.0),
       decoration: BoxDecoration(
-        color: Colors.transparent, // Nền tối
+        color: Colors.transparent,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
@@ -198,24 +235,26 @@ class _WeatherWidgetState extends State<WeatherWidget> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // Tên thành phố
-          Text(
-            cityName,
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
-          ),
-          SizedBox(height: 8),
-          // Nhiệt độ
-          Text(
-            '$temperature°C',
-            style: TextStyle(
-              fontSize: 36,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                '$cityName',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+              Text(
+                ' 🌍 $temperature°C',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ],
           ),
           SizedBox(height: 8),
           // Thời tiết
@@ -246,7 +285,8 @@ class _WeatherWidgetState extends State<WeatherWidget> {
             musicDescription,
             style: TextStyle(
               fontSize: 16,
-              color: Colors.white70,
+              color: Colors.white,
+              fontStyle: FontStyle.italic,
             ),
           ),
         ],
