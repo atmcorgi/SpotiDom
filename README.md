@@ -15,7 +15,7 @@
 - **Flutter**: Xây dựng ứng dụng di động đa nền tảng.
 - **Spotify Web API**: Để lấy gợi ý nhạc và điều khiển phát nhạc.
 - **OpenWeather API**: Để lấy dữ liệu thời tiết hiện tại.
-- **BLoC (Business Logic Component)**: Quản lý trạng thái trong Flutter. (hoặc Provider vì hiện tại chưa làm)
+- **BLoC (Business Logic Component)**: Quản lý trạng thái trong Flutter.
 
 ## Màn Hình Chính
 
