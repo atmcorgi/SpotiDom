@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:weather_music_app/config.dart';
+import 'package:SpotiDom/constants/string.dart';
 
 class WeatherService {
   Future<Map<String, dynamic>> fetchWeather(String city) async {

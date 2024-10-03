@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:weather_music_app/services/get_spotify_acess_token_service.dart';
-import 'package:weather_music_app/services/spotify_service.dart';
-import 'package:weather_music_app/services/weather_service.dart';
-import 'package:weather_music_app/widgets/control_panel_widget.dart';
-import 'package:weather_music_app/widgets/footer_widget.dart';
-import 'package:weather_music_app/widgets/header_widget.dart';
-import 'package:weather_music_app/widgets/music_by_mood_widget.dart';
-import 'package:weather_music_app/widgets/popular_tracks_widget.dart';
-import 'package:weather_music_app/widgets/suggested_tracks_widget.dart';
-import 'package:weather_music_app/widgets/title_widget.dart';
-import 'package:weather_music_app/widgets/weather_widget.dart';
+import 'package:SpotiDom/services/get_spotify_acess_token_service.dart';
+import 'package:SpotiDom/services/spotify_service.dart';
+import 'package:SpotiDom/services/weather_service.dart';
+import 'package:SpotiDom/widgets/control_panel_widget.dart';
+import 'package:SpotiDom/widgets/footer_widget.dart';
+import 'package:SpotiDom/widgets/header_widget.dart';
+import 'package:SpotiDom/widgets/music_by_mood_widget.dart';
+import 'package:SpotiDom/widgets/popular_tracks_widget.dart';
+import 'package:SpotiDom/widgets/suggested_tracks_widget.dart';
+import 'package:SpotiDom/widgets/title_widget.dart';
+import 'package:SpotiDom/widgets/weather_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   @override

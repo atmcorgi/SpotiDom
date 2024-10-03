@@ -1,5 +1,5 @@
-name: weather_music_app
-description: "A new Flutter project."
+name: SpotiDom
+description: "This app is made for Đom Đóm"
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 version: 1.0.0+1
@@ -11,21 +11,20 @@ dependencies:
   flutter:
     sdk: flutter
   http: ^0.13.3
-  audioplayers: ^6.1.0
   cupertino_icons: ^1.0.8
   path_provider: ^2.0.11
-  url_launcher: ^6.0.20
   flutter_secure_storage: ^6.0.0
   flutter_web_auth_2: ^3.0.0
   flutter_bloc: ^8.1.6
   bloc: ^8.0.0
   geolocator: ^13.0.1
+  equatable: ^2.0.5
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
-  flutter_launcher_icons: ^0.13.1 # Cập nhật phiên bản
+  flutter_launcher_icons: ^0.13.1
 
 flutter:
   uses-material-design: true

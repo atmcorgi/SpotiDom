@@ -1,0 +1,9 @@
+// OpenWeather API
+const String weatherApiKey = '1d62accca50a3da42a458b0de64d9ea0';
+
+// Spotify API
+const String clientId = '9ee1c645cf9b47b880227a3c4456e00d';
+const String clientSecret = '2dbdf3c5369244bbafb88242773af528';
+const String redirectUri = 'http://localhost:8080/callback';
+const String authentCode =
+    'AQBlR5FMI42qWm44wX84jazYRnrO2tIZY_Vas-B7EqrWKyogE8JjtkcUkgSi9nX4HHT7bt9oOaCmD04sF_phIof86OwJjCEz6ynH-0T82e_GLOHMfnVc6WM8aO4Z0IYmCrFHCKxycOsDigESRbO9D5Q4owYbmtu3kQzBmcr9GyPXVx9hsEgEHI0aekcE9kDI-z0fDjvJ9c5nbcyTIoe_7sgF6-JEe4TmZzmdRlhIO8zCRyAN5aPY0Ly7O7y0sNd1FSF5QnRRd3nQlVhcTFKzHI7cMP4vUWNk5-5AklDv1ygfkTyXsMH0yuGQf2ody1a2nkIl5gn9KDSRvzPV-9WTZdHcDnhNzBywBUGJMqjQS1Nt1Kg7byUufDolGAQUgxNItoh7zR8muq9wsMo-OAjequOskHMB3OSNlb51dQ';

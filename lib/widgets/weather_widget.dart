@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:weather_music_app/services/weather_service.dart';
-import 'package:weather_music_app/const.dart';
+import 'package:SpotiDom/constants/map_weather.dart';
+import 'package:SpotiDom/services/weather_service.dart';
 
 class WeatherWidget extends StatefulWidget {
   @override

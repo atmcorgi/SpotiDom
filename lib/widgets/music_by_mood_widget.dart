@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weather_music_app/services/spotify_service.dart';
+import 'package:SpotiDom/services/spotify_service.dart';
 
 class MusicByMoodWidget extends StatelessWidget {
   final Future<List<Map<String, dynamic>>> tracksList;

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weather_music_app/widgets/footer_widget.dart';
+import 'package:SpotiDom/widgets/footer_widget.dart';
 
 class SearchScreen extends StatefulWidget {
   @override
