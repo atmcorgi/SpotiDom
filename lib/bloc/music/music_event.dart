@@ -1,3 +1,4 @@
+import 'package:SpotiDom/data/models/weather.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class MusicEvent extends Equatable {
@@ -8,16 +9,16 @@ abstract class MusicEvent extends Equatable {
 }
 
 class FetchMusicByWeather extends MusicEvent {
-  final String weatherCondition;
+  final Weather weather;
 
-  const FetchMusicByWeather(this.weatherCondition);
+  const FetchMusicByWeather(this.weather);
 
   @override
-  List<Object> get props => [weatherCondition];
+  List<Object> get props => [weather];
 }
 
 class PlayTrack extends MusicEvent {
   final String trackUri;
 
-  PlayTrack(this.trackUri);
+  const PlayTrack(this.trackUri);
 }

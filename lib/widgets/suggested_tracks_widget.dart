@@ -1,9 +1,11 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 
 class SuggestedTracksWidget extends StatelessWidget {
   final Future<List<Map<String, dynamic>>> tracksList;
 
-  SuggestedTracksWidget({required this.tracksList});
+  const SuggestedTracksWidget({required this.tracksList});
 
   @override
   Widget build(BuildContext context) {
@@ -11,11 +13,11 @@ class SuggestedTracksWidget extends StatelessWidget {
       future: tracksList,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         } else if (snapshot.hasError) {
           return Center(child: Text('Error: ${snapshot.error}'));
         } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-          return Center(child: Text('No tracks available'));
+          return const Center(child: Text('No tracks available'));
         } else {
           final data = snapshot.data!;
 
@@ -23,7 +25,7 @@ class SuggestedTracksWidget extends StatelessWidget {
             color: Colors.black,
             height: 240, // Fixed height for the track list
             child: GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2, // Number of columns
                 crossAxisSpacing: 2,
                 mainAxisSpacing: 2,
@@ -38,14 +40,14 @@ class SuggestedTracksWidget extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(4),
                   ),
-                  color: Color.fromARGB(255, 41, 41, 41),
+                  color: const Color.fromARGB(255, 41, 41, 41),
                   child: Row(
                     children: [
                       // Track image
                       Expanded(
                         flex: 1,
                         child: ClipRRect(
-                          borderRadius: BorderRadius.only(
+                          borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(4),
                             bottomLeft: Radius.circular(4),
                           ),
@@ -60,14 +62,14 @@ class SuggestedTracksWidget extends StatelessWidget {
                                 width: 40,
                                 height: 40,
                                 color: Colors.grey,
-                                child: Icon(Icons.broken_image,
+                                child: const Icon(Icons.broken_image,
                                     size: 50, color: Colors.white),
                               );
                             },
                           ),
                         ),
                       ),
-                      SizedBox(width: 8),
+                      const SizedBox(width: 8),
                       // Track and artist names
                       Expanded(
                         flex: 2,
@@ -78,15 +80,15 @@ class SuggestedTracksWidget extends StatelessWidget {
                             children: [
                               Text(
                                 track['name'] ?? 'Unknown Track',
-                                style: TextStyle(color: Colors.white),
+                                style: const TextStyle(color: Colors.white),
                                 overflow: TextOverflow.ellipsis,
                               ),
-                              SizedBox(height: 4),
+                              const SizedBox(height: 4),
                               Text(
                                 artists.isNotEmpty
                                     ? artists[0]['name'] ?? 'Unknown Artist'
                                     : 'Unknown Artist',
-                                style: TextStyle(color: Colors.white70),
+                                style: const TextStyle(color: Colors.white70),
                                 overflow: TextOverflow.ellipsis,
                               ),
                             ],

@@ -33,7 +33,7 @@ class MusicError extends MusicState {
 class MusicPlaying extends MusicState {
   final String trackUri;
 
-  MusicPlaying(this.trackUri);
+  const MusicPlaying(this.trackUri);
 
   @override
   List<Object> get props => [trackUri];

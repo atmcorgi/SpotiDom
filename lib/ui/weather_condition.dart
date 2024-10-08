@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:SpotiDom/bloc/weather/weather_bloc.dart';
@@ -35,40 +37,47 @@ class _WeatherConditionState extends State<WeatherCondition>
     super.dispose();
   }
 
-  String getBackgroundImage(String weatherCondition) {
+  // Get background color based on weather condition
+  Color getBackgroundColor(String weatherCondition) {
     switch (weatherCondition.toLowerCase()) {
       case 'clear':
-        return 'images/clear.jpg';
+        return Colors.lightBlueAccent.shade100; // Sáng, tươi tắn hơn
       case 'clouds':
-        return 'images/clouds.jpg';
+        return Colors
+            .blueGrey.shade400; // Xanh xám sáng, giữ được cảm giác đám mây
       case 'drizzle':
-        return 'images/drizzle.jpg';
+        return Colors.cyanAccent.shade200; // Màu xanh ngọc sáng, nhẹ nhàng
       case 'rain':
-        return 'images/rain.jpg';
+        return Colors.deepPurpleAccent.shade200; // Tím sáng, năng động
       case 'thunderstorm':
-        return 'images/thunderstorm.jpg';
+        return Colors.purpleAccent.shade400; // Tím rực rỡ, kịch tính
       case 'snow':
-        return 'images/snow.jpg';
+        return Colors
+            .lightBlue.shade200; // Xanh nhạt tạo cảm giác trong trẻo hơn trắng
       case 'mist':
-        return 'images/mist.jpeg';
+        return Colors.cyan.shade200; // Xanh dịu nhẹ, phù hợp với sương mờ
       case 'smoke':
-        return 'images/smoke.jpg';
+        return Colors
+            .deepOrangeAccent.shade200; // Cam sáng, mạnh mẽ thay vì xám
       case 'haze':
-        return 'images/haze.jpeg';
+        return Colors
+            .amberAccent.shade200; // Vàng sáng hơn, vẫn giữ cảm giác ấm áp
       case 'dust':
-        return 'images/dust.jpg';
+        return Colors.orangeAccent.shade200; // Cam sáng và ấm áp hơn
       case 'fog':
-        return 'images/fog.jpeg';
+        return Colors.cyan.shade400; // Xanh ngọc sáng thay vì xám
       case 'sand':
-        return 'images/sand.jpeg';
+        return Colors
+            .yellowAccent.shade200; // Vàng nhạt, tươi sáng và hợp với nền tối
       case 'ash':
-        return 'images/ash.jpg';
+        return Colors.purple.shade300; // Tím sáng hơn cho cảm giác bí ẩn
       case 'squall':
-        return 'images/squall.jpeg';
+        return Colors.tealAccent.shade200; // Xanh lá ánh sáng hơn
       case 'tornado':
-        return 'images/tornado.jpg';
+        return Colors.redAccent.shade200; // Đỏ sáng, tạo ấn tượng mạnh
       default:
-        return 'images/default_background.png'; // Hình nền mặc định
+        return Colors
+            .blueAccent.shade200; // Màu xanh thay vì đen để nổi bật hơn
     }
   }
 
@@ -80,7 +89,8 @@ class _WeatherConditionState extends State<WeatherCondition>
           return const Center(child: CircularProgressIndicator());
         } else if (state is WeatherLoaded) {
           final weather = state.weather;
-          final backgroundImage = getBackgroundImage(weather.main);
+          final backgroundColor =
+              getBackgroundColor(weather.main); // Use background color
 
           _controller.forward();
 
@@ -89,14 +99,11 @@ class _WeatherConditionState extends State<WeatherCondition>
             child: Container(
               padding: const EdgeInsets.all(20.0),
               decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(backgroundImage),
-                  fit: BoxFit.cover,
-                ),
+                color: backgroundColor,
                 borderRadius: BorderRadius.circular(12),
                 boxShadow: const [
                   BoxShadow(
-                    color: Colors.white38,
+                    color: Colors.blueGrey,
                     blurRadius: 10,
                     spreadRadius: 2,
                     offset: Offset(0, 4),

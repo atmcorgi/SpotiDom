@@ -19,6 +19,8 @@ dependencies:
   bloc: ^8.0.0
   geolocator: ^13.0.1
   equatable: ^2.0.5
+  google_generative_ai: ^0.0.1-dev
+  flutter_gemini: ^2.0.5
 
 dev_dependencies:
   flutter_test:

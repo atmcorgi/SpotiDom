@@ -1,15 +1,17 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 
 class Header extends StatelessWidget implements PreferredSizeWidget {
   @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       // Gradient background
       flexibleSpace: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [Color(0xFF0D0D0D), Color(0xFF1A1A1A)],
             begin: Alignment.topLeft,
@@ -31,16 +33,16 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
                 Shadow(
                   blurRadius: 8.0,
                   color: Colors.black.withOpacity(0.4),
-                  offset: Offset(0, 3),
+                  offset: const Offset(0, 3),
                 ),
               ],
             ),
           ),
-          SizedBox(width: 8),
+          const SizedBox(width: 8),
           Stack(
             children: [
               // Avatar with a subtle glow effect
-              CircleAvatar(
+              const CircleAvatar(
                 backgroundImage: AssetImage('images/avt_d.jpg'),
                 radius: 16,
                 backgroundColor: Colors.transparent,
@@ -69,7 +71,7 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
       elevation: 10,
       actions: [
         IconButton(
-          icon: Icon(Icons.notifications_outlined, color: Colors.white),
+          icon: const Icon(Icons.notifications_outlined, color: Colors.white),
           onPressed: () {
             Navigator.pushNamed(context, '/notifications');
           },
