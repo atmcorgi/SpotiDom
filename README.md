@@ -1,11 +1,11 @@
 # PKA - Group 5 - SpotiDom
 
-Ứng dụng Flutter giúp gợi ý và phát nhạc dựa trên điều kiện thời tiết hiện tại. Ứng dụng tích hợp với OpenWeather API để lấy dữ liệu thời tiết và Spotify Web API để gợi ý và điều khiển phát nhạc.
+Ứng dụng Flutter giúp gợi ý và phát nhạc dựa trên điều kiện thời tiết hiện tại. Ứng dụng tích hợp với OpenWeather API để lấy dữ liệu thời tiết và Spotify Web API cùng với Gemini API để gợi ý và điều khiển phát nhạc.
 
 ## Tính Năng
 
 - Lấy thông tin thời tiết theo thời gian thực dựa trên vị trí hiện tại hoặc thành phố người dùng chọn.
-- Gợi ý nhạc dựa trên thời tiết hiện tại.
+- Gợi ý nhạc dựa trên thời tiết hiện tại, sử dụng Gemini API để phân tích dữ liệu thời tiết và đưa ra các playlist phù hợp.
 - Tích hợp với Spotify Web API để phát nhạc.
 - Điều khiển phát nhạc đầy đủ (phát, tạm dừng, chuyển bài tiếp theo, quay lại bài trước, xáo trộn, v.v.).
 - Hiển thị thông tin thời tiết và nhạc trên màn hình chính.
@@ -15,6 +15,7 @@
 - **Flutter**: Xây dựng ứng dụng di động đa nền tảng.
 - **Spotify Web API**: Để lấy gợi ý nhạc và điều khiển phát nhạc.
 - **OpenWeather API**: Để lấy dữ liệu thời tiết hiện tại.
+- **Gemini API**: Đưa ra các gợi ý playlist dựa trên phân tích thời tiết.
 - **BLoC (Business Logic Component)**: Quản lý trạng thái trong Flutter.
 
 ## Màn Hình Chính
@@ -23,7 +24,7 @@
 
    - Hiển thị điều kiện thời tiết hiện tại.
    - Danh sách các thành phố để người dùng chọn.
-   - Gợi ý nhạc dựa trên thời tiết.
+   - Gợi ý nhạc dựa trên thời tiết thông qua phân tích của Gemini API.
    - Các danh sách nhạc phổ biến, các bài hát theo tâm trạng.
    - Bao gồm các nút điều khiển phát nhạc (phát, tạm dừng, chuyển bài).
 
@@ -36,6 +37,7 @@
    - Hiển thị các playlist và bài hát đã lưu.
 
 4. **Hồ Sơ**:
+
    - Hiển thị hồ sơ Spotify và thói quen nghe nhạc của người dùng.
 
 ## Cài Đặt
@@ -47,6 +49,7 @@ Trước khi bắt đầu, hãy đảm bảo bạn đã đáp ứng các yêu c�
 - Bạn đã cài đặt Flutter SDK: [Bắt Đầu Với Flutter](https://docs.flutter.dev/get-started/install).
 - Bạn có tài khoản Spotify Developer: [Spotify Developer](https://developer.spotify.com/dashboard/).
 - Bạn có khóa API của OpenWeather: [OpenWeather API](https://openweathermap.org/api).
+- Bạn có tài khoản và khóa API của Gemini: [Gemini API](https://geminiapi.com).
 
 ### Thiết Lập
 
